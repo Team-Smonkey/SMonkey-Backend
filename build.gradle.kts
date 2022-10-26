@@ -1,33 +1,44 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version PluginVersions.SPRING_BOOT_VERSION
-    id("io.spring.dependency-management") version PluginVersions.DEPENDENCY_MANAGER_VERSION
-    kotlin("jvm") version PluginVersions.JVM_VERSION
-    kotlin("plugin.spring") version PluginVersions.SPRING_PLUGIN_VERSION
-    kotlin("plugin.jpa") version PluginVersions.JPA_PLUGIN_VERSION
+    id(Plugin.SPRING_FRAMEWORK) version PluginVersions.SPRING_BOOT_VERSION
+    id(Plugin.SPRING_MANAGEMENT) version PluginVersions.DEPENDENCY_MANAGER_VERSION
+    kotlin(Plugin.KOTLIN_JVM) version PluginVersions.JVM_VERSION
+    kotlin(Plugin.KOTLIN_SPRING) version PluginVersions.SPRING_PLUGIN_VERSION
+    kotlin(Plugin.KOTLIN_JPA) version PluginVersions.JPA_PLUGIN_VERSION
 }
 
-group = "com.example"
+group = ProjectProperties.Group
 version = PluginVersions.PROJECT_VERSION
 
 java.sourceCompatibility = JavaVersion.VERSION_11
+
+configurations {
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation(Dependencies.SPRING_DATA_JPA)
-    implementation(Dependencies.SPRING_WEB)
-    implementation(Dependencies.VALIDATION)
-    implementation(Dependencies.JACKSON)
-    implementation(Dependencies.KTLINT)
-    runtimeOnly(Dependencies.MYSQL_DRIVER)
-    implementation(Dependencies.KOTLIN_STDLIB)
-    implementation(Dependencies.KOTLIN_REFLECT)
-    implementation(Dependencies.SPRING_SECURITY)
-    implementation(Dependencies.SPRING_TEST)
+    installDependencies(
+        spring = true,
+        kotlin = true,
+        ktlint = true,
+        jackson = true,
+        jwt = true,
+    )
+
+    val runtime = listOf(
+        Dependencies.MYSQL_DRIVER,
+    ).dependenciesFlatten()
+
+    runtime.forEach(::runtimeOnly)
+
+    annotationProcessor(Dependencies.CONFIGUATION_PROCESSOR)
 }
 
 allOpen {
@@ -37,7 +48,7 @@ allOpen {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "11"
+        jvmTarget = ProjectProperties.JvmTarget
     }
 }
 

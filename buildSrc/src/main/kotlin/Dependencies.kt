@@ -33,4 +33,10 @@ object Dependencies {
     // properties
     const val PROPERTIES_SCAN = "org.springframework.boot:spring-boot-configuration-processor"
 
+    // jwt
+    const val JWT = "io.jsonwebtoken:jjwt:${DependencyVersions.JWT}"
+
+    // configuration-processor
+    const val CONFIGUATION_PROCESSOR = "org.springframework.boot:spring-boot-configuration-processor"
+
 }

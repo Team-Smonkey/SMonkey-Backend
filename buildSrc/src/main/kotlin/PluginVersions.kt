@@ -1,3 +1,12 @@
+object Plugin {
+    const val SPRING_FRAMEWORK = "org.springframework.boot"
+    const val SPRING_MANAGEMENT = "io.spring.dependency-management"
+
+    const val KOTLIN_JVM = "jvm"
+    const val KOTLIN_SPRING = "plugin.spring"
+    const val KOTLIN_JPA = "plugin.jpa"
+}
+
 object PluginVersions {
     const val PROJECT_VERSION = "0.0.1-SNAPSHOT"
 
