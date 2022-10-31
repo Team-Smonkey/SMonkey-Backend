@@ -11,13 +11,12 @@ import org.springframework.boot.context.properties.ConstructorBinding
  * @param refreshTokenExp refreshToken Expired time
  */
 
-// TODO ("Issue! 어노테이션 오류가 발생함")
-//@ConfigurationProperties(prefix = "jwt")
+@ConfigurationProperties(prefix = "jwt")
 @ConstructorBinding
 class JwtProperties(
     val secretKey: String,
     val accessTokenExp: Long,
-    val refreshTokenExp: Long
+    val refreshTokenExp: Long,
 ) {
 
     companion object {

@@ -30,7 +30,7 @@ fun DependencyHandler.installDependencies(
     }
 
     if(jwt) {
-        implmentation(Dependencies.JWT)
+        implementation(Dependencies.JWT)
     }
 }
 
