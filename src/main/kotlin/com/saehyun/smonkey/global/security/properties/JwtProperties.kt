@@ -16,7 +16,7 @@ import org.springframework.boot.context.properties.ConstructorBinding
 class JwtProperties(
     val secretKey: String,
     val accessTokenExp: Long,
-    val refreshTokenExp: Long
+    val refreshTokenExp: Long,
 ) {
 
     companion object {
