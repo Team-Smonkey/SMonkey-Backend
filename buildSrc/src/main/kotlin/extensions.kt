@@ -13,6 +13,8 @@ fun DependencyHandler.installDependencies(
         implementation(Dependencies.SPRING_DATA_JPA)
         implementation(Dependencies.SPRING_WEB)
         implementation(Dependencies.SPRING_SECURITY)
+        implementation(Dependencies.SPRING_REDIS)
+        implementation(Dependencies.SPRING_VALIDATION)
         testImplementation(Dependencies.SPRING_TEST)
     }
 

@@ -24,6 +24,13 @@ object Dependencies {
     // security
     const val SPRING_SECURITY = "org.springframework.boot:spring-boot-starter-security"
 
+    // validation
+    const val SPRING_VALIDATION = "org.springframework.boot:spring-boot-starter-validation"
+
+
+    // redis
+    const val SPRING_REDIS = "org.springframework.boot:spring-boot-starter-data-redis"
+
     // cloud
     const val SPRING_CLOUD = "org.springframework.cloud:spring-cloud-dependencies:${DependencyVersions.SPRING_CLOUD_VERSION}"
 

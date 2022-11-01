@@ -1,12 +1,10 @@
 package com.saehyun.smonkey.domain.user.service
 
 import com.saehyun.smonkey.domain.user.entity.RefreshToken
-import com.saehyun.smonkey.domain.user.entity.User
-import com.saehyun.smonkey.domain.user.exception.UserAlreadyExistException
+import com.saehyun.smonkey.domain.user.exception.PasswordNotCorrectException
 import com.saehyun.smonkey.domain.user.facade.UserFacade
-import com.saehyun.smonkey.domain.user.payload.request.SignUpRequest
+import com.saehyun.smonkey.domain.user.payload.request.SignInRequest
 import com.saehyun.smonkey.domain.user.repository.RefreshTokenRepository
-import com.saehyun.smonkey.domain.user.repository.UserRepository
 import com.saehyun.smonkey.global.payload.BaseResponse
 import com.saehyun.smonkey.global.security.jwt.JwtTokenProvider
 import com.saehyun.smonkey.global.security.jwt.payload.TokenResponse
@@ -14,34 +12,30 @@ import com.saehyun.smonkey.global.security.properties.JwtProperties
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
-private const val SIGN_UP_MESSAGE = "sign up success"
+private const val SIGN_IN_SUCCESS = "success to sign in"
 
 @Service
-class SignUpService(
-    private val userRepository: UserRepository,
+class SignInService(
+    private val userFacade: UserFacade,
+    private val passwordEncoder: PasswordEncoder,
     private val refreshTokenRepository: RefreshTokenRepository,
     private val jwtTokenProvider: JwtTokenProvider,
-    private val passwordEncoder: PasswordEncoder,
-    private val userFacade: UserFacade,
     jwtProperties: JwtProperties,
 ) {
     private val refreshExp: Long = jwtProperties.refreshTokenExp
 
-    fun signUp(request: SignUpRequest): BaseResponse<TokenResponse> {
-        if(userFacade.getUserExist(request.accountId)) throw UserAlreadyExistException
+    fun signIn(
+        request: SignInRequest,
+    ): BaseResponse<TokenResponse> {
 
-        val user = User(
-                accountId = request.accountId,
-                password = passwordEncoder.encode(request.password),
-                name = request.name,
-                email = request.email,
-                age = request.age,
-            )
+        val user = userFacade.getByAccountId(request.accountId)
 
-        userRepository.save(user)
+        if(!passwordEncoder.matches(request.password, user.password)) {
+            throw PasswordNotCorrectException.EXCEPTION
+        }
 
         val tokenResponse = jwtTokenProvider.getToken(
-            accountId = user.accountId,
+            accountId = request.accountId,
         )
 
         val refreshToken = RefreshToken(
@@ -53,8 +47,8 @@ class SignUpService(
         refreshTokenRepository.save(refreshToken)
 
         return BaseResponse(
-            status = 201,
-            message = SIGN_UP_MESSAGE,
+            status = 200,
+            message = SIGN_IN_SUCCESS,
             content = tokenResponse,
         )
     }
