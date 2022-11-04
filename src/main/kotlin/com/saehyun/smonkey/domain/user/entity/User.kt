@@ -42,4 +42,6 @@ class User(
 
     var age = age
         protected set
+
+    fun getAccountId(): Long = accountId.toLong()
 }

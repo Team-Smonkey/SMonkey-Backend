@@ -1,7 +1,6 @@
-package com.saehyun.smonkey.domain.smonkey.payload
+package com.saehyun.smonkey.domain.smonkey.payload.request
 
 data class MakeSMonkeyRequest(
-    val userId: Long,
     val name: String,
     val backgroundColor: String,
 )
