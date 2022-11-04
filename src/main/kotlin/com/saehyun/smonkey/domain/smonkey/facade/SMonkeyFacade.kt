@@ -7,4 +7,6 @@ interface SMonkeyFacade {
     fun saveSMonkey(smonkey: SMonkey)
 
     fun getSMonkeyExist(userId: Long): Boolean
+
+    fun getSMonkeyById(userId: Long): SMonkey
 }
