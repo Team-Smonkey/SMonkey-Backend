@@ -2,6 +2,7 @@ package com.saehyun.smonkey.domain.smonkey.facade
 
 import com.saehyun.smonkey.domain.smonkey.entity.SMonkey
 import com.saehyun.smonkey.domain.smonkey.exception.SMonkeyAlreadyExistException
+import com.saehyun.smonkey.domain.smonkey.exception.SMonkeyNotFoundException
 import com.saehyun.smonkey.domain.smonkey.repository.SMonkeyRepository
 import org.springframework.stereotype.Component
 
@@ -18,5 +19,9 @@ internal class SMonkeyFacadeImpl(
 
     override fun getSMonkeyExist(userId: Long): Boolean {
         return smonkeyRepository.findByUserId(userId) != null
+    }
+
+    override fun getSMonkeyById(userId: Long): SMonkey {
+        return smonkeyRepository.findByUserId(userId) ?: throw SMonkeyNotFoundException
     }
 }

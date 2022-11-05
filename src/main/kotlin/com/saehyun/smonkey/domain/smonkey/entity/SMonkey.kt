@@ -22,4 +22,11 @@ class SMonkey(
 
     var point = point
         protected set
+
+    fun updateColor(
+        backgroundColor: String,
+    ): SMonkey {
+        this.backgroundColor = backgroundColor
+        return this
+    }
 }

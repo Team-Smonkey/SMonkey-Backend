@@ -5,5 +5,13 @@ enum class GlobalExceptionErrorCode(
         override val message: String
 ): ErrorResponse {
 
-    INVALID_METHOD_ARGUMENT(400, "Invalid Method Argument")
+    INVALID_METHOD_ARGUMENT(
+        status = 400,
+        message = "Invalid Method Argument",
+    ),
+
+    UNEXPECT(
+        status = 500,
+        message = "unexpect exception occurred",
+    ),
 }

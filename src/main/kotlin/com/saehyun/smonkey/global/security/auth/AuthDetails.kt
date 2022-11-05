@@ -17,7 +17,7 @@ class AuthDetails(
 
     override fun getPassword(): String = user.password
 
-    override fun getUsername(): String = user.name
+    override fun getUsername(): String = user.accountId
 
     override fun isAccountNonExpired(): Boolean = DefaultAccountNonExpired
 

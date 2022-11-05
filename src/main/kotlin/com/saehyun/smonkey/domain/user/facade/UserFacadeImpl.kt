@@ -4,6 +4,7 @@ import com.saehyun.smonkey.domain.user.entity.User
 import com.saehyun.smonkey.domain.user.exception.UserNotFoundException
 import com.saehyun.smonkey.domain.user.repository.UserRepository
 import org.springframework.data.repository.findByIdOrNull
+import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component
 @Component
 internal class UserFacadeImpl(
     private val userRepository: UserRepository,
-): UserFacade {
+) : UserFacade {
 
     override fun getById(id: Long): User =
         userRepository.findByIdOrNull(id) ?: throw UserNotFoundException.EXCEPTION
@@ -24,7 +25,7 @@ internal class UserFacadeImpl(
         userRepository.findByAccountId(accountId) ?: throw UserNotFoundException.EXCEPTION
 
     override fun getCurrentUser(): User {
-        val currentUserAccountId = getAuthenticationName()
+        val currentUserAccountId = getAuthenticationName().name
         return getByAccountId(currentUserAccountId)
     }
 
@@ -32,8 +33,7 @@ internal class UserFacadeImpl(
         return userRepository.findByAccountId(accountId) != null
     }
 
-    private fun getAuthenticationName(): String {
-        return SecurityContextHolder.getContext().authentication.name
-            ?: throw UserNotFoundException.EXCEPTION
+    private fun getAuthenticationName(): Authentication {
+        return SecurityContextHolder.getContext().authentication ?: throw UserNotFoundException.EXCEPTION
     }
 }

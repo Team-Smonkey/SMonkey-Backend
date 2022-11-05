@@ -12,7 +12,7 @@ enum class SMonkeyErrorCode(
      */
     COLOR_NOT_FOUND(
         status = 401,
-        message = "color not found"
+        message = "color not found",
     ),
 
     /**
@@ -21,6 +21,13 @@ enum class SMonkeyErrorCode(
     SMONKEY_ALREADY_EXIST(
         status = 409,
         message = "smonkey already exist",
-    )
+    ),
 
+    /**
+     * 스몽키가 존재하지 않는 경우
+     */
+    SMONKEY_NOT_FOUND(
+        status = 401,
+        message = "smonkey not found",
+    ),
 }

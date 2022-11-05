@@ -32,6 +32,8 @@ dependencies {
         jwt = true,
     )
 
+    implementation("io.github.microutils:kotlin-logging-jvm:2.1.21")
+
     val runtime = listOf(
         Dependencies.MYSQL_DRIVER,
     ).dependenciesFlatten()
