@@ -31,7 +31,7 @@ class MakeSMonkeyService(
 
         sMonkeyFacade.saveSMonkey(
             SMonkey(
-                userId = user.getAccountId(),
+                userId = user.id,
                 name = request.name,
                 backgroundColor = request.backgroundColor,
                 point = DefaultPoint,

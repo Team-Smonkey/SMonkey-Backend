@@ -19,8 +19,9 @@ class UpdateBackgroundColorService(
         request: UpdateBackgroundColorRequest
     ): BaseResponse<Unit> {
         val user = userFacade.getCurrentUser()
+
         val smonkey: SMonkey = smonkeyFacade.getSMonkeyById(
-            userId = user.getAccountId()
+            userId = user.id,
         )
 
         smonkey.updateColor(
