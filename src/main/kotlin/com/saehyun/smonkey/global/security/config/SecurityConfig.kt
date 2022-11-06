@@ -32,6 +32,7 @@ class SecurityConfig(
             .antMatchers(HttpMethod.POST, "/smonkey").authenticated()
             .antMatchers(HttpMethod.PATCH, "/smonkey").authenticated()
             .antMatchers(HttpMethod.GET, "/smonkey").authenticated()
+            .antMatchers(HttpMethod.POST, "/feed").authenticated()
             .antMatchers("/user").permitAll()
             .anyRequest().denyAll()
             .and()
