@@ -15,5 +15,10 @@ enum class FeedErrorCode(
     FEED_TYPE_NOT_EXIST(
         status = 401,
         message = "feed type not exist",
+    ),
+
+    NOT_MY_FEED(
+        status = 403,
+        message = "this post is not your post"
     )
 }
