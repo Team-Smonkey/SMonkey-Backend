@@ -27,7 +27,7 @@ enum class SMonkeyErrorCode(
      * 스몽키가 존재하지 않는 경우
      */
     SMONKEY_NOT_FOUND(
-        status = 401,
+        status = 404,
         message = "smonkey not found",
     ),
 
