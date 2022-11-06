@@ -20,5 +20,5 @@ enum class FeedErrorCode(
     NOT_MY_FEED(
         status = 403,
         message = "this post is not your post"
-    )
+    ),
 }
