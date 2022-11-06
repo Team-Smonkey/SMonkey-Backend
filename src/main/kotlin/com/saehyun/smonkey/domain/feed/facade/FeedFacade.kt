@@ -4,7 +4,7 @@ import com.saehyun.smonkey.domain.feed.entity.Feed
 
 interface FeedFacade {
 
-    fun getFeed(feedId: Long): Feed
+    fun getFeedById(feedId: Long): Feed
 
     fun getFeedAll(): List<Feed>
 
