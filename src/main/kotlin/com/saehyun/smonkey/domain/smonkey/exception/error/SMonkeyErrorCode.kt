@@ -30,4 +30,20 @@ enum class SMonkeyErrorCode(
         status = 401,
         message = "smonkey not found",
     ),
+
+    /**
+     * 레벨이 확인되지 않는 경우
+     */
+    LEVEL_NOT_FOUND(
+        status = 404,
+        message = "level not found",
+    ),
+
+    /**
+     * 금연 단계와 확인되지 않는 경우
+     */
+    SMOKING_STEP_NOT_FOUND(
+        status = 404,
+        message = "smoking step not found"
+    )
 }
