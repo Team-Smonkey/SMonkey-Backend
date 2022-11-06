@@ -8,6 +8,6 @@ import com.saehyun.smonkey.global.exception.GlobalException
  *
  * @throws PasswordNotCorrectException
  */
-object PasswordNotCorrectException: GlobalException(UserErrorCode.PASSWORD_NOT_CORRECT) {
+object PasswordNotCorrectException : GlobalException(UserErrorCode.PASSWORD_NOT_CORRECT) {
     val EXCEPTION = PasswordNotCorrectException
 }

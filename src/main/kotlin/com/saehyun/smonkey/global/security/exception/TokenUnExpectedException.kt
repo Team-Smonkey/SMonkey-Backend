@@ -7,6 +7,6 @@ import com.saehyun.smonkey.global.exception.GlobalException
  *
  * @throws TokenUnExpectedException
  */
-object TokenUnExpectedException: GlobalException(TokenErrorCode.TOKEN_UNEXPECTED) {
+object TokenUnExpectedException : GlobalException(TokenErrorCode.TOKEN_UNEXPECTED) {
     val EXCEPTION = TokenUnExpectedException
 }

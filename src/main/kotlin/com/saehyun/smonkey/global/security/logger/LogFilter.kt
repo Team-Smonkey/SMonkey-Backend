@@ -14,7 +14,21 @@ class LogFilter : OncePerRequestFilter() {
         response: HttpServletResponse,
         filterChain: FilterChain,
     ) {
-        kLogger.info { "Client ${getRemoteAddress(request)} Request to ${request.method} ${request.requestURL} with header names: ${getHeaders(request)}" }
+        kLogger.info {
+            StringBuilder()
+                .append("Client")
+                .append(" ")
+                .append(getRemoteAddress(request))
+                .append("Request to")
+                .append(" ")
+                .append(request.method)
+                .append(" ")
+                .append(request.requestURL)
+                .append(" ")
+                .append("with header names: ")
+                .append(getHeaders(request))
+                .toString()
+        }
         filterChain.doFilter(request, response)
     }
 

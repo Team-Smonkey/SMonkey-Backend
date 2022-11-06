@@ -8,6 +8,6 @@ import com.saehyun.smonkey.global.exception.GlobalException
  *
  * @throws UserNotFoundException
  */
-object UserNotFoundException: GlobalException(UserErrorCode.USER_NOT_FOUND) {
+object UserNotFoundException : GlobalException(UserErrorCode.USER_NOT_FOUND) {
     val EXCEPTION = UserNotFoundException
 }

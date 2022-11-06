@@ -9,5 +9,4 @@ class SMonkeyApplicationTests {
     @Test
     fun contextLoads() {
     }
-
 }

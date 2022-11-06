@@ -19,7 +19,7 @@ class GlobalExceptionHandler {
 
     @ExceptionHandler(GlobalException::class)
     fun globalException(
-            e: GlobalException
+        e: GlobalException
     ): ResponseEntity<BaseResponse<Unit>> {
         return handleException(e)
     }

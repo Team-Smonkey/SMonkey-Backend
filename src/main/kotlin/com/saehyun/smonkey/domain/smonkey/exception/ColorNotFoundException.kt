@@ -8,6 +8,6 @@ import com.saehyun.smonkey.global.exception.GlobalException
  *
  * @throws ColorNotFoundException
  */
-object ColorNotFoundException: GlobalException(SMonkeyErrorCode.COLOR_NOT_FOUND) {
+object ColorNotFoundException : GlobalException(SMonkeyErrorCode.COLOR_NOT_FOUND) {
     val EXCEPTION = ColorNotFoundException
 }

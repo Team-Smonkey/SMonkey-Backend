@@ -30,4 +30,3 @@ enum class TokenErrorCode(
      */
     TOKEN_UNEXPECTED(401, "Unexpected Token Exception"),
 }
-

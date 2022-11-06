@@ -6,5 +6,4 @@ import org.springframework.context.annotation.Configuration
 
 @ConfigurationPropertiesScan(basePackageClasses = [JwtProperties::class])
 @Configuration
-class ConfigurationPropertiesScanConfig {
-}
+class ConfigurationPropertiesScanConfig

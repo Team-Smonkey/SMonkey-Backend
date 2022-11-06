@@ -5,7 +5,7 @@ import com.saehyun.smonkey.global.exception.error.ErrorResponse
 enum class FeedErrorCode(
     override val status: Int,
     override val message: String,
-): ErrorResponse {
+) : ErrorResponse {
 
     POST_NOT_FOUND(
         status = 404,

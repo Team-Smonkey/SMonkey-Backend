@@ -38,7 +38,7 @@ class SMonkeyController(
     }
 
     @GetMapping
-    fun getSMonkey() : BaseResponse<GetSMonkeyResponse> {
+    fun getSMonkey(): BaseResponse<GetSMonkeyResponse> {
         return getSMonkeyService.getMonkey()
     }
 }

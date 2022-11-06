@@ -1,6 +1,5 @@
 package com.saehyun.smonkey.global.security.config
 
-
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.saehyun.smonkey.global.security.filter.FilterConfig
 import com.saehyun.smonkey.global.security.jwt.JwtTokenProvider
@@ -20,14 +19,12 @@ class SecurityConfig(
     private val objectMapper: ObjectMapper,
 ) {
 
-
     @Bean
     protected fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
             .cors().and()
             .csrf().disable()
             .formLogin().disable()
-
             .authorizeRequests()
             .antMatchers(HttpMethod.POST, "/smonkey").authenticated()
             .antMatchers(HttpMethod.PATCH, "/smonkey").authenticated()
@@ -36,7 +33,6 @@ class SecurityConfig(
             .antMatchers("/user").permitAll()
             .anyRequest().denyAll()
             .and()
-
             .apply(
                 FilterConfig(
                     jwtTokenProvider = jwtTokenProvider,

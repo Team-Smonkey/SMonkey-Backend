@@ -30,7 +30,7 @@ class SignInService(
 
         val user = userFacade.getByAccountId(request.accountId)
 
-        if(!passwordEncoder.matches(request.password, user.password)) {
+        if (!passwordEncoder.matches(request.password, user.password)) {
             throw PasswordNotCorrectException.EXCEPTION
         }
 

@@ -8,6 +8,6 @@ import com.saehyun.smonkey.global.exception.GlobalException
  *
  * @throws SMonkeyAlreadyExistException
  */
-object SMonkeyAlreadyExistException: GlobalException(SMonkeyErrorCode.SMONKEY_ALREADY_EXIST) {
+object SMonkeyAlreadyExistException : GlobalException(SMonkeyErrorCode.SMONKEY_ALREADY_EXIST) {
     val EXCEPTION = SMonkeyAlreadyExistException
 }

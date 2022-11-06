@@ -11,9 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails
  */
 class AuthDetails(
     private val user: User,
-): UserDetails {
+) : UserDetails {
     override fun getAuthorities():
-            MutableCollection<out GrantedAuthority> = mutableListOf()
+        MutableCollection<out GrantedAuthority> = mutableListOf()
 
     override fun getPassword(): String = user.password
 

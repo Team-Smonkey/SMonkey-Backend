@@ -5,6 +5,8 @@ object Plugin {
     const val KOTLIN_JVM = "jvm"
     const val KOTLIN_SPRING = "plugin.spring"
     const val KOTLIN_JPA = "plugin.jpa"
+
+    const val KT_LINT = "org.jlleitschuh.gradle.ktlint"
 }
 
 object PluginVersions {
@@ -16,4 +18,6 @@ object PluginVersions {
     const val SPRING_PLUGIN_VERSION = "1.6.21"
     const val JPA_PLUGIN_VERSION = "1.6.21"
     const val KAPT_VERSION = "1.6.21"
+
+    const val KT_LINT = "10.2.0"
 }

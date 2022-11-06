@@ -6,6 +6,7 @@ plugins {
     kotlin(Plugin.KOTLIN_JVM) version PluginVersions.JVM_VERSION
     kotlin(Plugin.KOTLIN_SPRING) version PluginVersions.SPRING_PLUGIN_VERSION
     kotlin(Plugin.KOTLIN_JPA) version PluginVersions.JPA_PLUGIN_VERSION
+    id(Plugin.KT_LINT) version PluginVersions.KT_LINT
 }
 
 group = ProjectProperties.Group

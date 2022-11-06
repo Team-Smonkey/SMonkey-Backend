@@ -7,6 +7,6 @@ import com.saehyun.smonkey.global.exception.GlobalException
  *
  * @exception TokenExpiredException
  */
-object TokenExpiredException: GlobalException(TokenErrorCode.TOKEN_EXPIRED) {
+object TokenExpiredException : GlobalException(TokenErrorCode.TOKEN_EXPIRED) {
     val EXCEPTION = TokenExpiredException
 }

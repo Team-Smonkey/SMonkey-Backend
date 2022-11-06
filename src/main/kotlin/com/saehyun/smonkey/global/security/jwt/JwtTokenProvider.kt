@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component
 import java.util.*
 import javax.servlet.http.HttpServletRequest
 
-
 /**
  * JWT Token의 generate를 담당하는 [JwtTokenProvider]
  */
