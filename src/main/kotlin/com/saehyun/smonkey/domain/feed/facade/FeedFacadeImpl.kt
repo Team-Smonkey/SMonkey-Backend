@@ -11,7 +11,7 @@ class FeedFacadeImpl(
     private val feedRepository: FeedRepository,
 ) : FeedFacade {
 
-    override fun getFeed(feedId: Long): Feed {
+    override fun getFeedById(feedId: Long): Feed {
         return feedRepository.findByIdOrNull(feedId) ?: throw FeedNotFoundException
     }
 

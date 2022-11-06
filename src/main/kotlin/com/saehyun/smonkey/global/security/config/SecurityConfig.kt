@@ -5,7 +5,6 @@ import com.saehyun.smonkey.global.security.filter.FilterConfig
 import com.saehyun.smonkey.global.security.jwt.JwtTokenProvider
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -26,12 +25,8 @@ class SecurityConfig(
             .csrf().disable()
             .formLogin().disable()
             .authorizeRequests()
-            .antMatchers(HttpMethod.POST, "/smonkey").authenticated()
-            .antMatchers(HttpMethod.PATCH, "/smonkey").authenticated()
-            .antMatchers(HttpMethod.GET, "/smonkey").authenticated()
-            .antMatchers(HttpMethod.POST, "/feed").authenticated()
             .antMatchers("/user").permitAll()
-            .anyRequest().denyAll()
+            .anyRequest().authenticated()
             .and()
             .apply(
                 FilterConfig(
