@@ -7,6 +7,6 @@ import com.saehyun.smonkey.global.exception.GlobalException
  *
  * @throws TokenValidateException
  */
-object TokenValidateException: GlobalException(TokenErrorCode.TOKEN_VALIDATE_FAIL) {
+object TokenValidateException : GlobalException(TokenErrorCode.TOKEN_VALIDATE_FAIL) {
     val EXCEPTION = TokenValidateException
 }

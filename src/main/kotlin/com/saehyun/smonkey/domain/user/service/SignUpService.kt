@@ -28,15 +28,15 @@ class SignUpService(
     private val refreshExp: Long = jwtProperties.refreshTokenExp
 
     fun signUp(request: SignUpRequest): BaseResponse<TokenResponse> {
-        if(userFacade.getUserExist(request.accountId)) throw UserAlreadyExistException
+        if (userFacade.getUserExist(request.accountId)) throw UserAlreadyExistException
 
         val user = User(
-                accountId = request.accountId,
-                password = passwordEncoder.encode(request.password),
-                name = request.name,
-                email = request.email,
-                age = request.age,
-            )
+            accountId = request.accountId,
+            password = passwordEncoder.encode(request.password),
+            name = request.name,
+            email = request.email,
+            age = request.age,
+        )
 
         userRepository.save(user)
 

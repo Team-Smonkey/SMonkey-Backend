@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface FeedRepository: CrudRepository<Feed, Long> {
+interface FeedRepository : CrudRepository<Feed, Long> {
     override fun findAll(): List<Feed>
 }

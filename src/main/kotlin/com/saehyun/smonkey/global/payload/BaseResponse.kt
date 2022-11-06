@@ -11,17 +11,17 @@ import com.fasterxml.jackson.annotation.JsonInclude
  * @param content 요청한 response 값
  */
 class BaseResponse<T>(
-        val status: Int,
-        val message: String,
-        @JsonInclude(JsonInclude.Include.NON_NULL)
-        val content: T?
+    val status: Int,
+    val message: String,
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    val content: T?
 ) {
     companion object {
         fun of(e: GlobalException): BaseResponse<Unit> {
             return BaseResponse(
-                    status = e.status,
-                    message = e.message,
-                    content = null
+                status = e.status,
+                message = e.message,
+                content = null
             )
         }
     }

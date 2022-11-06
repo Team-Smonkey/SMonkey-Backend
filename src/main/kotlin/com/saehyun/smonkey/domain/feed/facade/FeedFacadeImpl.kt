@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 @Component
 class FeedFacadeImpl(
     private val feedRepository: FeedRepository,
-): FeedFacade {
+) : FeedFacade {
 
     override fun getFeed(feedId: Long): Feed {
         return feedRepository.findByIdOrNull(feedId) ?: throw FeedNotFoundException

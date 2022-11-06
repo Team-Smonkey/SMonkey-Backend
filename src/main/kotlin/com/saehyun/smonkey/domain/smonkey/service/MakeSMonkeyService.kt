@@ -21,7 +21,7 @@ class MakeSMonkeyService(
     ): BaseResponse<Unit> {
         val user = userFacade.getCurrentUser()
 
-        if(
+        if (
             colorList.none {
                 it == request.backgroundColor
             }

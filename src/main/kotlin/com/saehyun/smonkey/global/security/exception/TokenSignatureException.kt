@@ -7,6 +7,6 @@ import com.saehyun.smonkey.global.exception.GlobalException
  *
  * @exception TokenSignatureException
  */
-object TokenSignatureException: GlobalException(TokenErrorCode.TOKEN_SIGNATURE) {
+object TokenSignatureException : GlobalException(TokenErrorCode.TOKEN_SIGNATURE) {
     val EXCEPTION = TokenSignatureException
 }

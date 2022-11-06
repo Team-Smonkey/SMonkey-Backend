@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component
 @Component
 internal class SMonkeyFacadeImpl(
     private val smonkeyRepository: SMonkeyRepository
-): SMonkeyFacade {
+) : SMonkeyFacade {
 
     override fun saveSMonkey(smonkey: SMonkey) {
-        if(getSMonkeyExist(smonkey.userId)) throw SMonkeyAlreadyExistException
+        if (getSMonkeyExist(smonkey.userId)) throw SMonkeyAlreadyExistException
 
         smonkeyRepository.save(smonkey)
     }

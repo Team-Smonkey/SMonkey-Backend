@@ -25,7 +25,7 @@ class GetSMonkeyService(
         val nextPoint = smonkey.point.toNextPoint()
         val step = level.toStep()
 
-        val getSMonkeyResponse =  GetSMonkeyResponse(
+        val getSMonkeyResponse = GetSMonkeyResponse(
             userName = user.name,
             smonkeyName = smonkey.name,
             backgroundColor = smonkey.backgroundColor,

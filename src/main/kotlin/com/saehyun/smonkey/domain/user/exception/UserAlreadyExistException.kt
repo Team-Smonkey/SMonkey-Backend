@@ -8,6 +8,6 @@ import com.saehyun.smonkey.global.exception.GlobalException
  *
  * @throws UserAlreadyExistException
  */
-object UserAlreadyExistException: GlobalException(UserErrorCode.USER_ALREADY_EXIST) {
+object UserAlreadyExistException : GlobalException(UserErrorCode.USER_ALREADY_EXIST) {
     val EXCEPTION = UserAlreadyExistException
 }

@@ -11,7 +11,7 @@ import com.saehyun.smonkey.global.exception.error.ErrorResponse
 enum class UserErrorCode(
     override val status: Int,
     override val message: String,
-): ErrorResponse {
+) : ErrorResponse {
 
     /**
      * 유저를 찾을 수 없는 경우
