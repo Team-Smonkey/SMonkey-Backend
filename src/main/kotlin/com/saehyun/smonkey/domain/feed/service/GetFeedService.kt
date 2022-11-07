@@ -1,6 +1,9 @@
 package com.saehyun.smonkey.domain.feed.service
 
 import com.saehyun.smonkey.domain.feed.facade.FeedFacade
+import com.saehyun.smonkey.domain.feed.mapper.toFeedType
+import com.saehyun.smonkey.domain.feed.payload.request.GetFeedListRequest
+import com.saehyun.smonkey.domain.feed.payload.response.GetFeedListResponse
 import com.saehyun.smonkey.domain.feed.payload.response.GetFeedResponse
 import com.saehyun.smonkey.domain.smonkey.facade.SMonkeyFacade
 import com.saehyun.smonkey.domain.smonkey.mapper.toLevel
@@ -64,7 +67,54 @@ class GetFeedService(
         )
     }
 
+    fun getFeedList(
+        request: GetFeedListRequest,
+    ): BaseResponse<GetFeedListResponse> {
+
+        val category = request.category.toFeedType()
+
+        val feedList = feedFacade
+            .getFeedAll()
+            .filter { it.category == category }
+
+        val response  =
+            GetFeedListResponse(
+                feedList = feedList.map {
+                    val feed = feedFacade.getFeedById(it.id)
+                    val user = userFacade.getById(feed.user.id)
+                    val smonkey = smonkeyFacade.getSMonkeyById(feed.user.id)
+
+                    val point = smonkey.point
+                    val level = point.toLevel()
+
+                    GetFeedListResponse.Feed(
+                        writer = GetFeedListResponse.Feed.Writer(
+                            userName = user.name,
+                            smonkeyName = smonkey.name,
+                            backgroundColor = smonkey.backgroundColor,
+                            step = level.toStep(),
+                            point = point,
+                            level = level,
+                            nextPoint = point.toNextPoint(),
+                        ),
+                        feedId = feed.id,
+                        title = feed.title,
+                        content = feed.content,
+                        category = feed.category,
+                        createdAt = feed.createdAt!!,
+                    )
+                }
+            )
+
+        return BaseResponse(
+            status = 200,
+            message = GET_FEED_LIST_SUCCESS_MESSAGE,
+            content = response,
+        )
+    }
+
     companion object {
         const val GET_FEED_SUCCESS_MESSAGE = "success to get feed"
+        const val GET_FEED_LIST_SUCCESS_MESSAGE = "success to get feeds"
     }
 }
