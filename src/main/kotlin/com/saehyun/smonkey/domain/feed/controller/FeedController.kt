@@ -1,7 +1,9 @@
 package com.saehyun.smonkey.domain.feed.controller
 
+import com.saehyun.smonkey.domain.feed.payload.request.GetFeedListRequest
 import com.saehyun.smonkey.domain.feed.payload.request.SaveFeedRequest
 import com.saehyun.smonkey.domain.feed.payload.request.UpdateFeedRequest
+import com.saehyun.smonkey.domain.feed.payload.response.GetFeedListResponse
 import com.saehyun.smonkey.domain.feed.payload.response.GetFeedResponse
 import com.saehyun.smonkey.domain.feed.service.DeleteFeedService
 import com.saehyun.smonkey.domain.feed.service.GetFeedService
@@ -56,6 +58,15 @@ class FeedController(
     ): BaseResponse<GetFeedResponse> {
         return getFeedService.getFeed(
             feedId = feedId,
+        )
+    }
+
+    @GetMapping("/list")
+    fun getFeedList(
+        @RequestBody request: GetFeedListRequest,
+    ): BaseResponse<GetFeedListResponse> {
+        return getFeedService.getFeedList(
+            request = request,
         )
     }
 }
