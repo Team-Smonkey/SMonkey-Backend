@@ -22,4 +22,8 @@ class FeedFacadeImpl(
     override fun saveFeed(feed: Feed) {
         feedRepository.save(feed)
     }
+
+    override fun deleteFeedById(feed: Feed) {
+        feedRepository.delete(feed)
+    }
 }

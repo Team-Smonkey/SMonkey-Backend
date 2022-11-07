@@ -9,4 +9,6 @@ interface FeedFacade {
     fun getFeedAll(): List<Feed>
 
     fun saveFeed(feed: Feed)
+
+    fun deleteFeedById(feed: Feed)
 }
