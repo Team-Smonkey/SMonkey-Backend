@@ -2,6 +2,7 @@ package com.saehyun.smonkey.domain.feed.controller
 
 import com.saehyun.smonkey.domain.feed.payload.request.SaveFeedRequest
 import com.saehyun.smonkey.domain.feed.payload.request.UpdateFeedRequest
+import com.saehyun.smonkey.domain.feed.service.DeleteFeedService
 import com.saehyun.smonkey.domain.feed.service.SaveFeedService
 import com.saehyun.smonkey.domain.feed.service.UpdateFeedService
 import com.saehyun.smonkey.global.payload.BaseResponse
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*
 class FeedController(
     private val saveFeedService: SaveFeedService,
     private val updateFeedService: UpdateFeedService,
+    private val deleteFeedService: DeleteFeedService,
 ) {
 
     @PostMapping
@@ -33,6 +35,15 @@ class FeedController(
         return updateFeedService.updateFeed(
             feedId = feedId,
             request = request,
+        )
+    }
+
+    @DeleteMapping("/{feed-id}")
+    fun deleteFeed(
+        @PathVariable("feed-id") feedId: Long,
+    ): BaseResponse<Unit> {
+        return deleteFeedService.deleteFeed(
+            feedId = feedId,
         )
     }
 }
