@@ -2,7 +2,9 @@ package com.saehyun.smonkey.domain.feed.controller
 
 import com.saehyun.smonkey.domain.feed.payload.request.SaveFeedRequest
 import com.saehyun.smonkey.domain.feed.payload.request.UpdateFeedRequest
+import com.saehyun.smonkey.domain.feed.payload.response.GetFeedResponse
 import com.saehyun.smonkey.domain.feed.service.DeleteFeedService
+import com.saehyun.smonkey.domain.feed.service.GetFeedService
 import com.saehyun.smonkey.domain.feed.service.SaveFeedService
 import com.saehyun.smonkey.domain.feed.service.UpdateFeedService
 import com.saehyun.smonkey.global.payload.BaseResponse
@@ -15,6 +17,7 @@ class FeedController(
     private val saveFeedService: SaveFeedService,
     private val updateFeedService: UpdateFeedService,
     private val deleteFeedService: DeleteFeedService,
+    private val getFeedService: GetFeedService,
 ) {
 
     @PostMapping
@@ -43,6 +46,15 @@ class FeedController(
         @PathVariable("feed-id") feedId: Long,
     ): BaseResponse<Unit> {
         return deleteFeedService.deleteFeed(
+            feedId = feedId,
+        )
+    }
+
+    @GetMapping("/{feed-id}")
+    fun getFeed(
+        @PathVariable("feed-id") feedId: Long,
+    ): BaseResponse<GetFeedResponse> {
+        return getFeedService.getFeed(
             feedId = feedId,
         )
     }
