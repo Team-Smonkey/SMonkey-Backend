@@ -10,6 +10,8 @@ data class GetFeedListResponse(
         val writer: Writer,
         val feedId: Long,
         val title: String,
+        val likeCount: Int,
+        val isLike: Boolean,
         val content: String,
         val category: FeedType,
         val createdAt: LocalDateTime,

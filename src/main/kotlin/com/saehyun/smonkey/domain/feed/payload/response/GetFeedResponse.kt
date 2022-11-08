@@ -8,6 +8,8 @@ data class GetFeedResponse(
     val feedId: Long,
     val title: String,
     val content: String,
+    val likeCount: Int,
+    val isLike: Boolean,
     val category: FeedType,
     val createdAt: LocalDateTime,
 ) {
