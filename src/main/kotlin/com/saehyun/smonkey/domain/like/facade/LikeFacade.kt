@@ -5,7 +5,10 @@ import com.saehyun.smonkey.domain.like.entity.FeedLike
 
 interface LikeFacade {
 
-    fun checkLikeAlready(feed: Feed): Boolean
+    fun checkLikeAlready(
+        userId: Long,
+        feedId: Long,
+    ): Boolean
 
     fun getLikeCount(feed: Feed): Int
 
