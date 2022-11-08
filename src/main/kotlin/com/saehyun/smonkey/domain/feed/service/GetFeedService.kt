@@ -97,6 +97,12 @@ class GetFeedService(
                     val point = smonkey.point
                     val level = point.toLevel()
 
+                    val likeCount = likeFacade.getLikeCount(feed)
+                    val isLike = likeFacade.checkLikeAlready(
+                        userId = user.id,
+                        feedId = feed.id,
+                    )
+
                     GetFeedListResponse.Feed(
                         writer = GetFeedListResponse.Feed.Writer(
                             userName = user.name,
@@ -110,6 +116,8 @@ class GetFeedService(
                         feedId = feed.id,
                         title = feed.title,
                         content = feed.content,
+                        likeCount = likeCount,
+                        isLike = isLike,
                         category = feed.category,
                         createdAt = feed.createdAt!!,
                     )
