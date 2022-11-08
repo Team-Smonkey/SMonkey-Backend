@@ -4,11 +4,14 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.saehyun.smonkey.global.exception.GlobalException
 import com.saehyun.smonkey.global.exception.error.UnexpectException
 import com.saehyun.smonkey.global.payload.BaseResponse
+import mu.KotlinLogging
 import org.springframework.http.MediaType
 import org.springframework.web.filter.OncePerRequestFilter
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
+
+private val kLogger = KotlinLogging.logger {}
 
 class ExceptionFilter(
     private val objectMapper: ObjectMapper
@@ -21,9 +24,13 @@ class ExceptionFilter(
         try {
             filterChain.doFilter(request, response)
         } catch (exception: Exception) {
+            kLogger.error { exception.message }
             when (exception) {
                 is GlobalException -> writeErrorCode(exception, response)
-                else -> writeErrorCode(UnexpectException.EXCEPTION, response)
+                else -> {
+                    exception.printStackTrace()
+                    writeErrorCode(UnexpectException.EXCEPTION, response)
+                }
             }
         }
     }
