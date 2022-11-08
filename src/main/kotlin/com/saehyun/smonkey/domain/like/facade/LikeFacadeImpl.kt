@@ -12,12 +12,20 @@ class LikeFacadeImpl(
     private val likeRepository: LikeRepository,
 ): LikeFacade {
 
-    override fun checkLikeAlready(feed: Feed): Boolean {
-        TODO("Not yet implemented")
+    override fun checkLikeAlready(
+        userId: Long,
+        feedId: Long,
+    ): Boolean {
+        val feed = likeRepository.findByFeedIdAndUserId(
+            userId = userId,
+            feedId = feedId,
+        )
+
+        return feed != null
     }
 
     override fun getLikeCount(feed: Feed): Int {
-        TODO("Not yet implemented")
+        return likeRepository.findByFeedId(feed.id)?.size ?: 0
     }
 
     override fun like(feedLike: FeedLike) {
