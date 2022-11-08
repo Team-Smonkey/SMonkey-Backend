@@ -8,19 +8,19 @@ import com.saehyun.smonkey.global.payload.BaseResponse
 import org.springframework.stereotype.Service
 
 @Service
-class FeedLikeService(
+class FeedDisLikeService(
     private val userFacade: UserFacade,
     private val feedFacade: FeedFacade,
     private val likeFacade: LikeFacade,
 ) {
 
-    fun like(
+    fun disLike(
         feedId: Long
     ): BaseResponse<Unit> {
         val user = userFacade.getCurrentUser()
         val feed = feedFacade.getFeedById(feedId)
 
-        likeFacade.like(
+        likeFacade.disLike(
             feedLike = FeedLike(
                 user = user,
                 feed = feed,
@@ -29,12 +29,12 @@ class FeedLikeService(
 
         return BaseResponse(
             status = 201,
-            message = FEED_LIKE_SUCCESS,
+            message = FEED_DISLIKE_SUCCESS,
             content = null,
         )
     }
 
     companion object {
-        const val FEED_LIKE_SUCCESS = "success to like feed"
+        const val FEED_DISLIKE_SUCCESS = "success to dislike feed"
     }
 }
