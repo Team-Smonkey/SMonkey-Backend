@@ -5,6 +5,7 @@ import com.saehyun.smonkey.domain.feed.mapper.toFeedType
 import com.saehyun.smonkey.domain.feed.payload.request.GetFeedListRequest
 import com.saehyun.smonkey.domain.feed.payload.response.GetFeedListResponse
 import com.saehyun.smonkey.domain.feed.payload.response.GetFeedResponse
+import com.saehyun.smonkey.domain.like.facade.LikeFacade
 import com.saehyun.smonkey.domain.smonkey.facade.SMonkeyFacade
 import com.saehyun.smonkey.domain.smonkey.mapper.toLevel
 import com.saehyun.smonkey.domain.smonkey.mapper.toNextPoint
@@ -15,13 +16,14 @@ import org.springframework.stereotype.Service
 
 /**
  * [TODO]
- * 좋아요 기능 완성 후 도입 필요
+ * 댓글 기능 완성 후 도입 필요
  */
 @Service
 class GetFeedService(
     private val feedFacade: FeedFacade,
     private val smonkeyFacade: SMonkeyFacade,
     private val userFacade: UserFacade,
+    private val likeFacade: LikeFacade,
 ) {
 
     fun getFeed(
@@ -45,6 +47,12 @@ class GetFeedService(
         val point = smonkey.point
         val level = point.toLevel()
 
+        val likeCount = likeFacade.getLikeCount(feed)
+        val isLike = likeFacade.checkLikeAlready(
+            userId = user.id,
+            feedId = feed.id,
+        )
+
         return BaseResponse(
             status = 200,
             message = GET_FEED_SUCCESS_MESSAGE,
@@ -61,6 +69,8 @@ class GetFeedService(
                 feedId = feed.id,
                 title = feed.title,
                 content = feed.content,
+                likeCount = likeCount,
+                isLike = isLike,
                 category = feed.category,
                 createdAt = feed.createdAt!!,
             )
