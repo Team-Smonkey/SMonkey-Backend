@@ -20,11 +20,11 @@ class AcceptFriendService(
         request: AcceptFriendRequest,
     ): BaseResponse<Unit> {
         val user = userFacade.getCurrentUser()
-        val receiver = userFacade.getById(request.receiverId)
+        val sender = userFacade.getById(request.senderId)
 
         val friend = friendFacade.getBySenderIdAndReceiverId(
-            senderId = user.id,
-            receiverId = receiver.id,
+            senderId = sender.id,
+            receiverId = user.id,
         )
 
         if(friend.receiver.id == user.id && friend.status.isPending()) {

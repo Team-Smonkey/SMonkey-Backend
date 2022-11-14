@@ -15,7 +15,7 @@ interface FriendRepository: CrudRepository<Friend, Long> {
         receiverId: Long,
         statuses: List<FriendStatus>,
     ): List<Friend>
-    
+
     fun existsBySenderIdAndReceiverId(
         senderId: Long,
         receiverId: Long,
