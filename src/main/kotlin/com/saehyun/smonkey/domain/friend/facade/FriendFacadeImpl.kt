@@ -66,4 +66,18 @@ class FriendFacadeImpl(
         return friendList.toList()
     }
 
+    override fun getRequestFriendList(userId: Long): List<User> {
+
+        val statuses = listOf(
+            FriendStatus.PENDING,
+        )
+
+        val receiver: List<User> = friendRepository.getAllByReceiverIdAndStatusIn(
+            receiverId = userId,
+            statuses = statuses,
+        ).map { it.sender }
+
+        return receiver.toList()
+    }
+
 }

@@ -22,4 +22,8 @@ interface FriendFacade {
     fun getFriendList(
         userId: Long,
     ): List<User>
+
+    fun getRequestFriendList(
+        userId: Long,
+    ): List<User>
 }
