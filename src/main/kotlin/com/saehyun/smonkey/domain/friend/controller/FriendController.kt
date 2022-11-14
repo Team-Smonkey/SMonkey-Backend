@@ -4,10 +4,8 @@ import com.saehyun.smonkey.domain.friend.payload.request.AcceptFriendRequest
 import com.saehyun.smonkey.domain.friend.payload.request.FriendRequest
 import com.saehyun.smonkey.domain.friend.payload.request.RefuseFriendRequest
 import com.saehyun.smonkey.domain.friend.payload.response.GetFriendResponse
-import com.saehyun.smonkey.domain.friend.service.AcceptFriendService
-import com.saehyun.smonkey.domain.friend.service.GetFriendService
-import com.saehyun.smonkey.domain.friend.service.RefuseFriendService
-import com.saehyun.smonkey.domain.friend.service.RequestFriendService
+import com.saehyun.smonkey.domain.friend.payload.response.GetRequestFriendListResponse
+import com.saehyun.smonkey.domain.friend.service.*
 import com.saehyun.smonkey.global.payload.BaseResponse
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -19,6 +17,7 @@ class FriendController(
     private val acceptFriendService: AcceptFriendService,
     private val getFriendService: GetFriendService,
     private val refuseFriendService: RefuseFriendService,
+    private val getRequestFriendListService: GetRequestFriendListService,
 ) {
 
     @PostMapping
@@ -52,5 +51,10 @@ class FriendController(
     @GetMapping
     fun getFriend(): BaseResponse<GetFriendResponse> {
         return getFriendService.getFriend()
+    }
+
+    @GetMapping("/request")
+    fun getRequestFriendList(): BaseResponse<GetRequestFriendListResponse> {
+        return getRequestFriendListService.getFriendRequestList()
     }
 }
