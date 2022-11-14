@@ -6,3 +6,6 @@ enum class FriendStatus {
     REFUSED,
     ACCEPTED_REVERSE;
 }
+
+internal fun FriendStatus.isPending() =
+    this == FriendStatus.PENDING

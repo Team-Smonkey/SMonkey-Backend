@@ -20,9 +20,13 @@ data class Friend(
     @JoinColumn(name = "receiver_id")
     val receiver: User,
 
-    val status: FriendStatus,
+    var status: FriendStatus,
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: Long = 0
+
+    fun updateStatus(status: FriendStatus) {
+        this.status = status
+    }
 }
