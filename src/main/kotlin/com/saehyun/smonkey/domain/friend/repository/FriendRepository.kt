@@ -13,9 +13,9 @@ interface FriendRepository: CrudRepository<Friend, Long> {
 
     fun getAllByReceiverIdAndStatusIn(
         receiverId: Long,
-        status: List<FriendStatus>,
+        statuses: List<FriendStatus>,
     ): List<Friend>
-
+    
     fun existsBySenderIdAndReceiverId(
         senderId: Long,
         receiverId: Long,
