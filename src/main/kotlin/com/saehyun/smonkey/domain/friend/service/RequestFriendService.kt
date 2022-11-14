@@ -1,6 +1,7 @@
 package com.saehyun.smonkey.domain.friend.service
 
 import com.saehyun.smonkey.domain.friend.entity.Friend
+import com.saehyun.smonkey.domain.friend.exception.CanNotAddMeFriendException
 import com.saehyun.smonkey.domain.friend.exception.FriendAlreadyExistException
 import com.saehyun.smonkey.domain.friend.facade.FriendFacade
 import com.saehyun.smonkey.domain.friend.payload.request.FriendRequest
@@ -18,7 +19,11 @@ class RequestFriendService(
     fun requestFriend(
         request: FriendRequest,
     ): BaseResponse<Unit> {
+
         val sender = userFacade.getCurrentUser()
+
+        if(request.receiverId == sender.id) throw CanNotAddMeFriendException
+
         val receiver = userFacade.getById(
             id = request.receiverId,
         )
@@ -46,6 +51,6 @@ class RequestFriendService(
     }
 
     companion object {
-        const val REQUEST_FRIEND_SUCCESS_MESSAGE = "success to reqeust friend"
+        const val REQUEST_FRIEND_SUCCESS_MESSAGE = "success to request friend"
     }
 }
