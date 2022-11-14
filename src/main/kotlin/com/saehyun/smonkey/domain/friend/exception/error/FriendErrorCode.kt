@@ -23,5 +23,13 @@ enum class FriendErrorCode(
         status = 404,
     ),
 
+    /**
+     * 나를 친구로 추가할 수 없음
+     */
+    CAN_NOT_ADD_ME_FRIEND(
+        message = "can not add me friend",
+        status = 400,
+    ),
+
 
 }

@@ -1,10 +1,13 @@
 package com.saehyun.smonkey.domain.friend.facade
 
 import com.saehyun.smonkey.domain.friend.entity.Friend
+import com.saehyun.smonkey.domain.user.entity.User
 
 interface FriendFacade {
 
     fun createFriend(friend: Friend)
+
+    fun refuseFriend(friend: Friend)
 
     fun getBySenderIdAndReceiverId(
         senderId: Long,
@@ -15,4 +18,8 @@ interface FriendFacade {
         senderId: Long,
         receiverId: Long,
     ): Boolean
+
+    fun getFriendList(
+        userId: Long,
+    ): List<User>
 }
