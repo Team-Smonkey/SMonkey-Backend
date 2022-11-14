@@ -5,7 +5,7 @@ import com.saehyun.smonkey.global.exception.error.ErrorResponse
 enum class FriendErrorCode(
     override val message: String,
     override val status: Int,
-): ErrorResponse {
+) : ErrorResponse {
 
     /**
      * 이미 친구이거나 신청을 보냈을 경우
@@ -30,6 +30,4 @@ enum class FriendErrorCode(
         message = "can not add me friend",
         status = 400,
     ),
-
-
 }

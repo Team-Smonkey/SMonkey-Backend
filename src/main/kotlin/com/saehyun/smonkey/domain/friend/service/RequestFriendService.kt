@@ -22,7 +22,7 @@ class RequestFriendService(
 
         val sender = userFacade.getCurrentUser()
 
-        if(request.receiverId == sender.id) throw CanNotAddMeFriendException
+        if (request.receiverId == sender.id) throw CanNotAddMeFriendException
 
         val receiver = userFacade.getById(
             id = request.receiverId,
@@ -32,7 +32,7 @@ class RequestFriendService(
             senderId = sender.id,
             receiverId = receiver.id
         ).also {
-            if(it) throw FriendAlreadyExistException
+            if (it) throw FriendAlreadyExistException
         }
 
         friendFacade.createFriend(

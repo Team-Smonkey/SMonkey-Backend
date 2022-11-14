@@ -18,7 +18,7 @@ class DeleteFeedService(
         val user = userFacade.getCurrentUser()
         val feed = feedFacade.getFeedById(feedId)
 
-        if(feed.user.id != user.id) {
+        if (feed.user.id != user.id) {
             throw NotMyFeedException.EXCEPTION
         }
 

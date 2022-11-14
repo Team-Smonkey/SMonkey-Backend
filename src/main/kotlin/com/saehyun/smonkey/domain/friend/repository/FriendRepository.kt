@@ -4,7 +4,7 @@ import com.saehyun.smonkey.domain.friend.entity.Friend
 import com.saehyun.smonkey.domain.friend.utils.FriendStatus
 import org.springframework.data.repository.CrudRepository
 
-interface FriendRepository: CrudRepository<Friend, Long> {
+interface FriendRepository : CrudRepository<Friend, Long> {
 
     fun getAllBySenderIdAndStatusIn(
         senderId: Long,

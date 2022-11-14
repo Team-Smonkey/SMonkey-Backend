@@ -87,7 +87,7 @@ class GetFeedService(
             .getFeedAll()
             .filter { it.category == category }
 
-        val response  =
+        val response =
             GetFeedListResponse(
                 feedList = feedList.map {
                     val feed = feedFacade.getFeedById(it.id)
