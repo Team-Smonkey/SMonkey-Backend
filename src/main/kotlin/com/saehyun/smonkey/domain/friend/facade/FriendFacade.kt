@@ -7,6 +7,8 @@ interface FriendFacade {
 
     fun createFriend(friend: Friend)
 
+    fun refuseFriend(friend: Friend)
+
     fun getBySenderIdAndReceiverId(
         senderId: Long,
         receiverId: Long,

@@ -18,6 +18,12 @@ class FriendFacadeImpl(
         friendRepository.save(friend)
     }
 
+    override fun refuseFriend(
+        friend: Friend,
+    ) {
+        friendRepository.delete(friend)
+    }
+
     override fun getBySenderIdAndReceiverId(
         senderId: Long,
         receiverId: Long,
