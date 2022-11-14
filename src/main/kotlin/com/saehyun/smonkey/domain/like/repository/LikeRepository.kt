@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface LikeRepository: CrudRepository<FeedLike, Long> {
+interface LikeRepository : CrudRepository<FeedLike, Long> {
 
     fun findByFeedId(feedId: Long): List<FeedLike>?
 

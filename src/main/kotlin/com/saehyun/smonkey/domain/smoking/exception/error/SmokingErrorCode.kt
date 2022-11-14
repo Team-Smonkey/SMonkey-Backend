@@ -5,7 +5,7 @@ import com.saehyun.smonkey.global.exception.error.ErrorResponse
 enum class SmokingErrorCode(
     override val message: String,
     override val status: Int,
-): ErrorResponse {
+) : ErrorResponse {
 
     SMOKING_NOT_FOUND(
         message = "smoking info not found",

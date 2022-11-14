@@ -27,7 +27,7 @@ class AcceptFriendService(
             receiverId = user.id,
         )
 
-        if(friend.receiver.id == user.id && friend.status.isPending()) {
+        if (friend.receiver.id == user.id && friend.status.isPending()) {
             friend.updateStatus(
                 status = FriendStatus.ACCEPTED,
             )

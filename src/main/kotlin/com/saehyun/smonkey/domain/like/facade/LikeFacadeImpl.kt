@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 @Component
 class LikeFacadeImpl(
     private val likeRepository: LikeRepository,
-): LikeFacade {
+) : LikeFacade {
 
     override fun checkLikeAlready(
         userId: Long,
@@ -29,12 +29,12 @@ class LikeFacadeImpl(
     }
 
     override fun like(feedLike: FeedLike) {
-       val like: FeedLike? = likeRepository.findByFeedIdAndUserId(
+        val like: FeedLike? = likeRepository.findByFeedIdAndUserId(
             feedId = feedLike.feed.id,
             userId = feedLike.user.id,
         )
 
-        if(like == null) {
+        if (like == null) {
             likeRepository.save(feedLike)
         } else {
             throw LikeAlreadyExistException
@@ -47,7 +47,7 @@ class LikeFacadeImpl(
             userId = feedLike.user.id,
         )
 
-        if(like != null) {
+        if (like != null) {
             likeRepository.deleteById(like.id)
         } else {
             throw LikeNotFoundException

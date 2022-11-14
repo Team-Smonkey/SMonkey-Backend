@@ -5,7 +5,7 @@ import com.saehyun.smonkey.global.exception.error.ErrorResponse
 enum class LikeErrorCode(
     override val status: Int,
     override val message: String,
-): ErrorResponse {
+) : ErrorResponse {
 
     LIKE_ALREADY_EXIST(
         status = 409,

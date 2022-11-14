@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 @Component
 class SmokingFacadeImpl(
     private val smokingRepository: SmokingRepository
-): SmokingFacade {
+) : SmokingFacade {
 
     override fun getSmokingByUserId(
         userId: Long,
@@ -20,7 +20,7 @@ class SmokingFacadeImpl(
     }
 
     override fun saveSmoking(smoking: Smoking) {
-        if(smokingRepository.existsById(smoking.userId))
+        if (smokingRepository.existsById(smoking.userId))
             throw SmokingAlreadyExistException
 
         smokingRepository.save(smoking)

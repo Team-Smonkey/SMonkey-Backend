@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 @Component
 class FriendFacadeImpl(
     private val friendRepository: FriendRepository,
-): FriendFacade {
+) : FriendFacade {
 
     override fun createFriend(
         friend: Friend,
@@ -79,5 +79,4 @@ class FriendFacadeImpl(
 
         return receiver.toList()
     }
-
 }
