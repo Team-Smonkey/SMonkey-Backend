@@ -1,6 +1,5 @@
 package com.saehyun.smonkey.domain.friend.controller
 
-import com.saehyun.smonkey.domain.friend.payload.request.RefuseFriendRequest
 import com.saehyun.smonkey.domain.friend.payload.response.GetFriendResponse
 import com.saehyun.smonkey.domain.friend.payload.response.GetRequestFriendListResponse
 import com.saehyun.smonkey.domain.friend.payload.response.SearchFriendResponse
