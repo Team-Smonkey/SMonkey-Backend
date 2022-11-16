@@ -15,6 +15,7 @@ class SaveFeedService(
 ) {
 
     fun saveFeed(
+        category: String,
         request: SaveFeedRequest
     ): BaseResponse<Unit> {
         val user = userFacade.getCurrentUser()
@@ -24,7 +25,7 @@ class SaveFeedService(
                 user = user,
                 title = request.title,
                 content = request.content,
-                category = request.category.toFeedType()
+                category = category.toFeedType()
             )
         )
 

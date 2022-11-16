@@ -28,6 +28,7 @@ class FeedController(
         @RequestBody request: SaveFeedRequest,
     ): BaseResponse<Unit> {
         return saveFeedService.saveFeed(
+            category = category,
             request = request,
         )
     }
@@ -40,6 +41,7 @@ class FeedController(
     ): BaseResponse<Unit> {
         return updateFeedService.updateFeed(
             feedId = feedId,
+            category = category,
             request = request,
         )
     }

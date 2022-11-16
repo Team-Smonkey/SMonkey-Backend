@@ -18,6 +18,7 @@ class UpdateFeedService(
     @Transactional
     fun updateFeed(
         feedId: Long,
+        category: String,
         request: UpdateFeedRequest,
     ): BaseResponse<Unit> {
         val feed = feedFacade.getFeedById(feedId)
@@ -30,7 +31,7 @@ class UpdateFeedService(
         feed.update(
             title = request.title,
             content = request.content,
-            category = request.category.toFeedType(),
+            category = category.toFeedType(),
         )
 
         return BaseResponse(

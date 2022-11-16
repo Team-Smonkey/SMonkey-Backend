@@ -1,5 +1,6 @@
 package com.saehyun.smonkey.domain.feed.service
 
+import com.saehyun.smonkey.domain.feed.enum.FeedType
 import com.saehyun.smonkey.domain.feed.facade.FeedFacade
 import com.saehyun.smonkey.domain.feed.mapper.toFeedType
 import com.saehyun.smonkey.domain.feed.payload.response.GetFeedListResponse
@@ -81,13 +82,13 @@ class GetFeedService(
         category: String,
     ): BaseResponse<GetFeedListResponse> {
 
-        val category = request.category.toFeedType()
+        val feedType = category.toFeedType()
 
         val feedList = feedFacade
             .getFeedAll()
-            .runIf(request.category != "ALL") {
+            .runIf(feedType != FeedType.ALL) {
                 filter {
-                    it.category == category
+                   it.category == feedType
                 }
             }
 
