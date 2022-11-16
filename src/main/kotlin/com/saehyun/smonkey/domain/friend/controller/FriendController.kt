@@ -5,6 +5,7 @@ import com.saehyun.smonkey.domain.friend.payload.request.FriendRequest
 import com.saehyun.smonkey.domain.friend.payload.request.RefuseFriendRequest
 import com.saehyun.smonkey.domain.friend.payload.response.GetFriendResponse
 import com.saehyun.smonkey.domain.friend.payload.response.GetRequestFriendListResponse
+import com.saehyun.smonkey.domain.friend.payload.response.SearchFriendResponse
 import com.saehyun.smonkey.domain.friend.service.*
 import com.saehyun.smonkey.global.payload.BaseResponse
 import org.springframework.http.HttpStatus
@@ -18,6 +19,7 @@ class FriendController(
     private val getFriendService: GetFriendService,
     private val refuseFriendService: RefuseFriendService,
     private val getRequestFriendListService: GetRequestFriendListService,
+    private val searchFriendService: SearchFriendService,
 ) {
 
     @PostMapping
@@ -27,6 +29,15 @@ class FriendController(
     ): BaseResponse<Unit> {
         return requestFriendService.requestFriend(
             request = request,
+        )
+    }
+
+    @GetMapping("/search")
+    fun searchFriend(
+        @RequestParam("name") name: String,
+    ): BaseResponse<SearchFriendResponse> {
+        return searchFriendService.searchFriend(
+            name = name,
         )
     }
 
