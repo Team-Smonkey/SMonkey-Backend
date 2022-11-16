@@ -9,4 +9,8 @@ interface SMonkeyFacade {
     fun getSMonkeyExist(userId: Long): Boolean
 
     fun getSMonkeyById(userId: Long): SMonkey
+
+    fun getSMonkeyByIdWithDefault(
+        userId: Long
+    ): SMonkey
 }

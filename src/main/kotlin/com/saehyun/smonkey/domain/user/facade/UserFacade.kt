@@ -10,4 +10,6 @@ interface UserFacade {
     fun getCurrentUser(): User
 
     fun getUserExist(accountId: String): Boolean
+
+    fun searchUser(name: String): List<User>
 }

@@ -33,6 +33,12 @@ internal class UserFacadeImpl(
         return userRepository.findByAccountId(accountId) != null
     }
 
+    override fun searchUser(name: String): List<User> {
+        return userRepository.findByNameContaining(
+            name = name,
+        )
+    }
+
     private fun getAuthenticationName(): Authentication {
         return SecurityContextHolder.getContext().authentication ?: throw UserNotFoundException.EXCEPTION
     }

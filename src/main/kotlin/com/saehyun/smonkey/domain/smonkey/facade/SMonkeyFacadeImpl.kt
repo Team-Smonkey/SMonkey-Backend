@@ -24,4 +24,14 @@ internal class SMonkeyFacadeImpl(
     override fun getSMonkeyById(userId: Long): SMonkey {
         return smonkeyRepository.findByUserId(userId) ?: throw SMonkeyNotFoundException
     }
+
+    override fun getSMonkeyByIdWithDefault(userId: Long): SMonkey {
+        return smonkeyRepository.findByUserId(userId)
+            ?: SMonkey(
+                userId = userId,
+                name = "no smonkey",
+                backgroundColor = "WHITE",
+                point = 0,
+            )
+    }
 }
