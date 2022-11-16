@@ -2,7 +2,6 @@ package com.saehyun.smonkey.domain.feed.service
 
 import com.saehyun.smonkey.domain.feed.facade.FeedFacade
 import com.saehyun.smonkey.domain.feed.mapper.toFeedType
-import com.saehyun.smonkey.domain.feed.payload.request.GetFeedListRequest
 import com.saehyun.smonkey.domain.feed.payload.response.GetFeedListResponse
 import com.saehyun.smonkey.domain.feed.payload.response.GetFeedResponse
 import com.saehyun.smonkey.domain.like.facade.LikeFacade
@@ -79,7 +78,7 @@ class GetFeedService(
     }
 
     fun getFeedList(
-        request: GetFeedListRequest,
+        category: String,
     ): BaseResponse<GetFeedListResponse> {
 
         val category = request.category.toFeedType()

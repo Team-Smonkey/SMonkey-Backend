@@ -1,6 +1,5 @@
 package com.saehyun.smonkey.domain.feed.controller
 
-import com.saehyun.smonkey.domain.feed.payload.request.GetFeedListRequest
 import com.saehyun.smonkey.domain.feed.payload.request.SaveFeedRequest
 import com.saehyun.smonkey.domain.feed.payload.request.UpdateFeedRequest
 import com.saehyun.smonkey.domain.feed.payload.response.GetFeedListResponse
@@ -25,6 +24,7 @@ class FeedController(
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun saveFeed(
+        @RequestParam("category") category: String,
         @RequestBody request: SaveFeedRequest,
     ): BaseResponse<Unit> {
         return saveFeedService.saveFeed(
@@ -35,6 +35,7 @@ class FeedController(
     @PatchMapping("/{feed-id}")
     fun updateFeed(
         @PathVariable("feed-id") feedId: Long,
+        @RequestParam("category") category: String,
         @RequestBody request: UpdateFeedRequest,
     ): BaseResponse<Unit> {
         return updateFeedService.updateFeed(
@@ -63,10 +64,10 @@ class FeedController(
 
     @GetMapping("/list")
     fun getFeedList(
-        @RequestBody request: GetFeedListRequest,
+        @RequestParam("category") category: String,
     ): BaseResponse<GetFeedListResponse> {
         return getFeedService.getFeedList(
-            request = request,
+            category = category,
         )
     }
 }

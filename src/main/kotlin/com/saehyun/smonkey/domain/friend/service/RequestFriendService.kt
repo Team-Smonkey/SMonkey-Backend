@@ -4,7 +4,6 @@ import com.saehyun.smonkey.domain.friend.entity.Friend
 import com.saehyun.smonkey.domain.friend.exception.CanNotAddMeFriendException
 import com.saehyun.smonkey.domain.friend.exception.FriendAlreadyExistException
 import com.saehyun.smonkey.domain.friend.facade.FriendFacade
-import com.saehyun.smonkey.domain.friend.payload.request.FriendRequest
 import com.saehyun.smonkey.domain.friend.utils.FriendStatus
 import com.saehyun.smonkey.domain.user.facade.UserFacade
 import com.saehyun.smonkey.global.payload.BaseResponse
@@ -17,13 +16,13 @@ class RequestFriendService(
 ) {
 
     fun requestFriend(
-        request: FriendRequest,
+        accountId: String,
     ): BaseResponse<Unit> {
 
         val sender = userFacade.getCurrentUser()
 
         val receiver = userFacade.getByAccountId(
-            accountId = request.accountId,
+            accountId = accountId,
         )
 
         if (receiver.id == sender.id) throw CanNotAddMeFriendException
