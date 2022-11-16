@@ -11,6 +11,7 @@ import com.saehyun.smonkey.domain.smonkey.mapper.toLevel
 import com.saehyun.smonkey.domain.smonkey.mapper.toNextPoint
 import com.saehyun.smonkey.domain.smonkey.mapper.toStep
 import com.saehyun.smonkey.domain.user.facade.UserFacade
+import com.saehyun.smonkey.global.extension.runIf
 import com.saehyun.smonkey.global.payload.BaseResponse
 import org.springframework.stereotype.Service
 
@@ -85,7 +86,11 @@ class GetFeedService(
 
         val feedList = feedFacade
             .getFeedAll()
-            .filter { it.category == category }
+            .runIf(request.category != "ALL") {
+                filter {
+                    it.category == category
+                }
+            }
 
         val response =
             GetFeedListResponse(

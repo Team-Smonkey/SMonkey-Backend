@@ -17,29 +17,14 @@ import javax.persistence.Id
  * Lazy loading을 위해서 open class로 처리
  */
 @Entity
-class User(
-    accountId: String,
-    password: String,
-    name: String,
-    email: String,
-    age: Int,
+data class User(
+    val accountId: String,
+    val password: String,
+    val name: String,
+    val email: String,
+    val age: Int,
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0
-
-    var accountId = accountId
-        protected set
-
-    var password = password
-        protected set
-
-    var name = name
-        protected set
-
-    var email = email
-        protected set
-
-    var age = age
-        protected set
 }

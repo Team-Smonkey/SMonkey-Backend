@@ -22,11 +22,11 @@ class RequestFriendService(
 
         val sender = userFacade.getCurrentUser()
 
-        if (request.receiverId == sender.id) throw CanNotAddMeFriendException
-
-        val receiver = userFacade.getById(
-            id = request.receiverId,
+        val receiver = userFacade.getByAccountId(
+            accountId = request.accountId,
         )
+
+        if (receiver.id == sender.id) throw CanNotAddMeFriendException
 
         friendFacade.existsBySenderIdAndReceiverId(
             senderId = sender.id,
