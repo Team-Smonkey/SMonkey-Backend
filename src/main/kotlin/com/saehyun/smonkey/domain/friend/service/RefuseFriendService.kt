@@ -1,7 +1,6 @@
 package com.saehyun.smonkey.domain.friend.service
 
 import com.saehyun.smonkey.domain.friend.facade.FriendFacade
-import com.saehyun.smonkey.domain.friend.payload.request.RefuseFriendRequest
 import com.saehyun.smonkey.domain.friend.utils.isPending
 import com.saehyun.smonkey.domain.user.facade.UserFacade
 import com.saehyun.smonkey.global.payload.BaseResponse
@@ -16,11 +15,11 @@ class RefuseFriendService(
 
     @Transactional
     fun refuseFriend(
-        request: RefuseFriendRequest,
+        friendId: Long,
     ): BaseResponse<Unit> {
 
         val user = userFacade.getCurrentUser()
-        val sender = userFacade.getById(request.senderId)
+        val sender = userFacade.getById(friendId)
 
         val friend = friendFacade.getBySenderIdAndReceiverId(
             senderId = sender.id,

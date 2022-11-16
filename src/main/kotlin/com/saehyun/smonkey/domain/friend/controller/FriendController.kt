@@ -1,7 +1,5 @@
 package com.saehyun.smonkey.domain.friend.controller
 
-import com.saehyun.smonkey.domain.friend.payload.request.AcceptFriendRequest
-import com.saehyun.smonkey.domain.friend.payload.request.FriendRequest
 import com.saehyun.smonkey.domain.friend.payload.request.RefuseFriendRequest
 import com.saehyun.smonkey.domain.friend.payload.response.GetFriendResponse
 import com.saehyun.smonkey.domain.friend.payload.response.GetRequestFriendListResponse
@@ -25,10 +23,10 @@ class FriendController(
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun requestFriend(
-        @RequestBody request: FriendRequest,
+        @RequestParam("account-id") accountId: String,
     ): BaseResponse<Unit> {
         return requestFriendService.requestFriend(
-            request = request,
+            accountId = accountId,
         )
     }
 
@@ -43,19 +41,19 @@ class FriendController(
 
     @PostMapping("/accept")
     fun acceptFriend(
-        @RequestBody request: AcceptFriendRequest,
+        @RequestParam("friend-id") friendId: Long,
     ): BaseResponse<Unit> {
         return acceptFriendService.acceptFriend(
-            request = request,
+            friendId = friendId,
         )
     }
 
     @PostMapping("/refuse")
     fun refuseFriend(
-        @RequestBody request: RefuseFriendRequest,
+        @RequestParam("friend-id") friendId: Long,
     ): BaseResponse<Unit> {
         return refuseFriendService.refuseFriend(
-            request = request,
+            friendId = friendId,
         )
     }
 

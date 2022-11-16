@@ -1,7 +1,6 @@
 package com.saehyun.smonkey.domain.friend.service
 
 import com.saehyun.smonkey.domain.friend.facade.FriendFacade
-import com.saehyun.smonkey.domain.friend.payload.request.AcceptFriendRequest
 import com.saehyun.smonkey.domain.friend.utils.FriendStatus
 import com.saehyun.smonkey.domain.friend.utils.isPending
 import com.saehyun.smonkey.domain.user.facade.UserFacade
@@ -17,10 +16,10 @@ class AcceptFriendService(
 
     @Transactional
     fun acceptFriend(
-        request: AcceptFriendRequest,
+        friendId: Long,
     ): BaseResponse<Unit> {
         val user = userFacade.getCurrentUser()
-        val sender = userFacade.getById(request.senderId)
+        val sender = userFacade.getById(friendId)
 
         val friend = friendFacade.getBySenderIdAndReceiverId(
             senderId = sender.id,
