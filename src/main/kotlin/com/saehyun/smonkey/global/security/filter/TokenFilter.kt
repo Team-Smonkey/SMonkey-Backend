@@ -21,6 +21,7 @@ class TokenFilter(
         bearerToken?.let {
             val token = jwtTokenProvider.parseToken(it)
             val authentication = jwtTokenProvider.authenticateUser(token)
+
             SecurityContextHolder.getContext().authentication = authentication
         }
 

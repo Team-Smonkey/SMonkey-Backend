@@ -33,7 +33,7 @@ class FeedController(
         )
     }
 
-    @PatchMapping("/{feed-id}")
+    @PatchMapping("/{feed-id}/update")
     fun updateFeed(
         @PathVariable("feed-id") feedId: Long,
         @RequestParam("category") category: String,

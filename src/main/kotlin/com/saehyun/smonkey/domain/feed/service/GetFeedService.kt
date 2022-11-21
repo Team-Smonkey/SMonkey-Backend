@@ -88,7 +88,7 @@ class GetFeedService(
             .getFeedAll()
             .runIf(feedType != FeedType.ALL) {
                 filter {
-                   it.category == feedType
+                    it.category == feedType
                 }
             }
 

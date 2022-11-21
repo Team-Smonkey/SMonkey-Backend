@@ -26,7 +26,7 @@ class UserController(
         )
     }
 
-    @PostMapping("/signIn")
+    @PostMapping("/signin")
     fun signIn(
         @RequestBody request: SignInRequest,
     ): BaseResponse<TokenResponse> {

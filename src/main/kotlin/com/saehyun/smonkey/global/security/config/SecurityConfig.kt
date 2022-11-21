@@ -26,6 +26,7 @@ class SecurityConfig(
             .formLogin().disable()
             .authorizeRequests()
             .antMatchers("/user").permitAll()
+            .antMatchers("/user/signin").permitAll()
             .anyRequest().authenticated()
             .and()
             .apply(
