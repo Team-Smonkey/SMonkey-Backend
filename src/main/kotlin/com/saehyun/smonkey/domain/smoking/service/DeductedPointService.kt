@@ -25,7 +25,7 @@ class DeductedPointService(
         )
 
         smonkey.updatePoint(
-           point = smonkey.point - DeductedPoint
+            point = smonkey.point - DeductedPoint
         )
 
         return BaseResponse(

@@ -17,7 +17,7 @@ internal fun Int.toLevel(): Int {
  * 레벨을 통해 현재 Max Point를 가져옵니다.
  */
 internal fun Int.levelToCurrentMaxPoint(): Int {
-    return SMonkeyLevel[this-1].targetPoint
+    return SMonkeyLevel[this - 1].targetPoint
 }
 
 internal fun Int.pointToCurrentPoint(): Int {
