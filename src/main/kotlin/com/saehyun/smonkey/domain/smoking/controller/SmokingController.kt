@@ -1,6 +1,7 @@
 package com.saehyun.smonkey.domain.smoking.controller
 
 import com.saehyun.smonkey.domain.smoking.payload.request.PostSmokingRequest
+import com.saehyun.smonkey.domain.smoking.service.DeductedPointService
 import com.saehyun.smonkey.domain.smoking.service.PostSmokingService
 import com.saehyun.smonkey.global.payload.BaseResponse
 import org.springframework.http.HttpStatus
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 class SmokingController(
     private val postSmokingService: PostSmokingService,
+    private val deductedPointService: DeductedPointService,
 ) {
 
     @PostMapping
@@ -20,5 +22,10 @@ class SmokingController(
         return postSmokingService.postSmoking(
             request = request,
         )
+    }
+
+    @PostMapping("/failed")
+    fun deductedPoint(): BaseResponse<Unit> {
+        return deductedPointService.pointDeducted()
     }
 }
