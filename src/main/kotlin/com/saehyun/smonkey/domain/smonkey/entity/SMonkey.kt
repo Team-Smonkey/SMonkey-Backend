@@ -29,4 +29,11 @@ class SMonkey(
         this.backgroundColor = backgroundColor
         return this
     }
+
+    fun updatePoint(
+        point: Int,
+    ): SMonkey {
+        this.point = point
+        return this
+    }
 }
