@@ -1,8 +1,9 @@
 package com.saehyun.smonkey.domain.smonkey.service
 
 import com.saehyun.smonkey.domain.smonkey.facade.SMonkeyFacade
+import com.saehyun.smonkey.domain.smonkey.mapper.levelToNextMaxPoint
+import com.saehyun.smonkey.domain.smonkey.mapper.pointToCurrentPoint
 import com.saehyun.smonkey.domain.smonkey.mapper.toLevel
-import com.saehyun.smonkey.domain.smonkey.mapper.toNextPoint
 import com.saehyun.smonkey.domain.smonkey.mapper.toStep
 import com.saehyun.smonkey.domain.smonkey.payload.response.GetSMonkeyResponse
 import com.saehyun.smonkey.domain.user.facade.UserFacade
@@ -22,17 +23,15 @@ class GetSMonkeyService(
         )
 
         val level = smonkey.point.toLevel()
-        val nextPoint = smonkey.point.toNextPoint()
-        val step = level.toStep()
 
         val getSMonkeyResponse = GetSMonkeyResponse(
             userName = user.name,
             smonkeyName = smonkey.name,
             backgroundColor = smonkey.backgroundColor,
             level = level,
-            step = step,
-            point = smonkey.point,
-            nextPoint = nextPoint,
+            step = level.toStep(),
+            point = smonkey.point.pointToCurrentPoint(),
+            nextPoint = level.levelToNextMaxPoint(),
         )
 
         return BaseResponse(
