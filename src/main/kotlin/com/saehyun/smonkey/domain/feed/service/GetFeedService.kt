@@ -8,7 +8,7 @@ import com.saehyun.smonkey.domain.feed.payload.response.GetFeedResponse
 import com.saehyun.smonkey.domain.like.facade.LikeFacade
 import com.saehyun.smonkey.domain.smonkey.facade.SMonkeyFacade
 import com.saehyun.smonkey.domain.smonkey.mapper.toLevel
-import com.saehyun.smonkey.domain.smonkey.mapper.toNextPoint
+import com.saehyun.smonkey.domain.smonkey.mapper.levelToNextMaxPoint
 import com.saehyun.smonkey.domain.smonkey.mapper.toStep
 import com.saehyun.smonkey.domain.user.facade.UserFacade
 import com.saehyun.smonkey.global.extension.runIf
@@ -65,7 +65,7 @@ class GetFeedService(
                     step = level.toStep(),
                     point = point,
                     level = level,
-                    nextPoint = point.toNextPoint(),
+                    nextPoint = point.levelToNextMaxPoint(),
                 ),
                 feedId = feed.id,
                 title = feed.title,
@@ -116,7 +116,7 @@ class GetFeedService(
                             step = level.toStep(),
                             point = point,
                             level = level,
-                            nextPoint = point.toNextPoint(),
+                            nextPoint = point.levelToNextMaxPoint(),
                         ),
                         feedId = feed.id,
                         title = feed.title,

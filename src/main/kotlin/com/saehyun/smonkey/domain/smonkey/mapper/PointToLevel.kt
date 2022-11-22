@@ -13,6 +13,23 @@ internal fun Int.toLevel(): Int {
     throw LevelNotFoundException.EXCEPTION
 }
 
-internal fun Int.toNextPoint(): Int {
-    return SMonkeyLevel[this.toLevel()].targetPoint
+/**
+ * 레벨을 통해 현재 Max Point를 가져옵니다.
+ */
+internal fun Int.levelToCurrentMaxPoint(): Int {
+    return SMonkeyLevel[this-1].targetPoint
+}
+
+internal fun Int.pointToCurrentPoint(): Int {
+    val level = this.toLevel()
+    val currentMax = level.levelToCurrentMaxPoint()
+
+    return this - currentMax
+}
+
+internal fun Int.levelToNextMaxPoint(): Int {
+    val nextMaxPoint = SMonkeyLevel[this].targetPoint
+    val currentMaxPoint = this.levelToCurrentMaxPoint()
+
+    return nextMaxPoint - currentMaxPoint
 }

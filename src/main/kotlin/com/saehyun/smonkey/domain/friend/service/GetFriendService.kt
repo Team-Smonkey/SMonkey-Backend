@@ -4,7 +4,7 @@ import com.saehyun.smonkey.domain.friend.facade.FriendFacade
 import com.saehyun.smonkey.domain.friend.payload.response.GetFriendResponse
 import com.saehyun.smonkey.domain.smonkey.facade.SMonkeyFacade
 import com.saehyun.smonkey.domain.smonkey.mapper.toLevel
-import com.saehyun.smonkey.domain.smonkey.mapper.toNextPoint
+import com.saehyun.smonkey.domain.smonkey.mapper.levelToNextMaxPoint
 import com.saehyun.smonkey.domain.smonkey.mapper.toStep
 import com.saehyun.smonkey.domain.user.facade.UserFacade
 import com.saehyun.smonkey.global.payload.BaseResponse
@@ -38,7 +38,7 @@ class GetFriendService(
                     step = level.toStep(),
                     point = point,
                     level = level,
-                    nextPoint = point.toNextPoint(),
+                    nextPoint = point.levelToNextMaxPoint(),
                 )
             }
         )
