@@ -46,13 +46,13 @@ class GetFeedService(
             userId = userId,
         )
 
-        val level = smonkey.point.toLevel()
-
         val likeCount = likeFacade.getLikeCount(feed)
         val isLike = likeFacade.checkLikeAlready(
             userId = user.id,
             feedId = feed.id,
         )
+
+        val level = smonkey.point.toLevel()
 
         return BaseResponse(
             status = 200,
@@ -99,8 +99,7 @@ class GetFeedService(
                     val user = userFacade.getById(feed.user.id)
                     val smonkey = smonkeyFacade.getSMonkeyById(feed.user.id)
 
-                    val point = smonkey.point
-                    val level = point.toLevel()
+                    val level = smonkey.point.toLevel()
 
                     val likeCount = likeFacade.getLikeCount(feed)
                     val isLike = likeFacade.checkLikeAlready(
@@ -114,9 +113,9 @@ class GetFeedService(
                             smonkeyName = smonkey.name,
                             backgroundColor = smonkey.backgroundColor,
                             step = level.toStep(),
-                            point = point,
+                            point = smonkey.point,
                             level = level,
-                            nextPoint = point.levelToNextMaxPoint(),
+                            nextPoint = level.levelToNextMaxPoint(),
                         ),
                         feedId = feed.id,
                         title = feed.title,
