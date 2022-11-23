@@ -7,8 +7,9 @@ import com.saehyun.smonkey.domain.feed.payload.response.GetFeedListResponse
 import com.saehyun.smonkey.domain.feed.payload.response.GetFeedResponse
 import com.saehyun.smonkey.domain.like.facade.LikeFacade
 import com.saehyun.smonkey.domain.smonkey.facade.SMonkeyFacade
-import com.saehyun.smonkey.domain.smonkey.mapper.toLevel
 import com.saehyun.smonkey.domain.smonkey.mapper.levelToNextMaxPoint
+import com.saehyun.smonkey.domain.smonkey.mapper.pointToCurrentPoint
+import com.saehyun.smonkey.domain.smonkey.mapper.toLevel
 import com.saehyun.smonkey.domain.smonkey.mapper.toStep
 import com.saehyun.smonkey.domain.user.facade.UserFacade
 import com.saehyun.smonkey.global.extension.runIf
@@ -45,8 +46,7 @@ class GetFeedService(
             userId = userId,
         )
 
-        val point = smonkey.point
-        val level = point.toLevel()
+        val level = smonkey.point.toLevel()
 
         val likeCount = likeFacade.getLikeCount(feed)
         val isLike = likeFacade.checkLikeAlready(
@@ -63,9 +63,9 @@ class GetFeedService(
                     smonkeyName = smonkey.name,
                     backgroundColor = smonkey.backgroundColor,
                     step = level.toStep(),
-                    point = point,
+                    point = smonkey.point.pointToCurrentPoint(),
                     level = level,
-                    nextPoint = point.levelToNextMaxPoint(),
+                    nextPoint = level.levelToNextMaxPoint(),
                 ),
                 feedId = feed.id,
                 title = feed.title,

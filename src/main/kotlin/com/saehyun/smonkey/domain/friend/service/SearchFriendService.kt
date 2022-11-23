@@ -2,8 +2,8 @@ package com.saehyun.smonkey.domain.friend.service
 
 import com.saehyun.smonkey.domain.friend.payload.response.SearchFriendResponse
 import com.saehyun.smonkey.domain.smonkey.facade.SMonkeyFacade
-import com.saehyun.smonkey.domain.smonkey.mapper.toLevel
 import com.saehyun.smonkey.domain.smonkey.mapper.levelToNextMaxPoint
+import com.saehyun.smonkey.domain.smonkey.mapper.toLevel
 import com.saehyun.smonkey.domain.smonkey.mapper.toStep
 import com.saehyun.smonkey.domain.user.facade.UserFacade
 import com.saehyun.smonkey.global.payload.BaseResponse
@@ -28,8 +28,8 @@ class SearchFriendService(
 
                 val friendUser = userFacade.getById(friend.id)
                 val smonkey = smonkeyFacade.getSMonkeyByIdWithDefault(friend.id)
-                val point = smonkey.point
-                val level = point.toLevel()
+
+                val level = smonkey.point.toLevel()
 
                 SearchFriendResponse.User(
                     friendId = friend.id,
@@ -38,9 +38,9 @@ class SearchFriendService(
                     smonkeyName = smonkey.name,
                     backgroundColor = smonkey.backgroundColor,
                     step = level.toStep(),
-                    point = point,
+                    point = smonkey.point,
                     level = level,
-                    nextPoint = point.levelToNextMaxPoint(),
+                    nextPoint = level.levelToNextMaxPoint(),
                 )
             }
         )
